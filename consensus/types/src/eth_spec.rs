@@ -397,7 +397,7 @@ impl EthSpec for AerieEthSpec {
     type SubnetBitfieldLength = U64;
     type MaxValidatorsPerCommittee = U2048;
     type GenesisEpoch = U0;
-    type SlotsPerEpoch = U4;
+    type SlotsPerEpoch = U32;
     type EpochsPerEth1VotingPeriod = U64;
     type SlotsPerHistoricalRoot = U8192;
     type EpochsPerHistoricalVector = U65536;

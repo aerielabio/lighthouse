@@ -862,7 +862,7 @@ impl ChainSpec {
             /*
              * Config name
              */
-            config_name: Some("aeriemainnet".to_string()),
+            config_name: Some("aerie".to_string()),
             /*
              * Constants
              */
@@ -984,7 +984,7 @@ impl ChainSpec {
                 .expect("terminal_total_difficulty is a valid integer"),
             terminal_block_hash: ExecutionBlockHash::zero(),
             terminal_block_hash_activation_epoch: Epoch::new(18446744073709551615),
-            safe_slots_to_import_optimistically: 0,
+            safe_slots_to_import_optimistically: 128u64,
 
             /*
              * Capella hard fork params
