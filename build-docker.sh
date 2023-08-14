@@ -1,0 +1,1 @@
+docker build -t aerielab/lighthouse:latest -t aerielab/lighthouse:v1.1 --build-arg FEATURES=aerie,jemalloc .

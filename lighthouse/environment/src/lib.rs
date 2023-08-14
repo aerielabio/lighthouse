@@ -22,7 +22,7 @@ use std::path::PathBuf;
 use std::sync::Arc;
 use task_executor::{ShutdownReason, TaskExecutor};
 use tokio::runtime::{Builder as RuntimeBuilder, Runtime};
-use types::{EthSpec, GnosisEthSpec, MainnetEthSpec, MinimalEthSpec};
+use types::{EthSpec, GnosisEthSpec, MainnetEthSpec,AerieEthSpec, MinimalEthSpec};
 
 #[cfg(target_family = "unix")]
 use {
@@ -165,6 +165,20 @@ impl EnvironmentBuilder<GnosisEthSpec> {
             sse_logging_components: None,
             eth_spec_instance: GnosisEthSpec,
             eth2_config: Eth2Config::gnosis(),
+            eth2_network_config: None,
+        }
+    }
+}
+
+impl EnvironmentBuilder<AerieEthSpec> {
+    /// Creates a new builder using the `aerie` eth2 specification.
+    pub fn aerie() -> Self {
+        Self {
+            runtime: None,
+            log: None,
+            sse_logging_components: None,
+            eth_spec_instance: AerieEthSpec,
+            eth2_config: Eth2Config::aerie(),
             eth2_network_config: None,
         }
     }

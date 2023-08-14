@@ -8,7 +8,7 @@ use log::{debug, error, info};
 use std::collections::{HashMap, HashSet};
 use std::marker::PhantomData;
 use std::time::{Duration, Instant};
-use types::{BeaconBlockHeader, EthSpec, GnosisEthSpec, MainnetEthSpec, SignedBeaconBlock};
+use types::{BeaconBlockHeader, EthSpec, GnosisEthSpec,AerieEthSpec, MainnetEthSpec, SignedBeaconBlock};
 
 pub use config::Config;
 pub use error::Error;
@@ -23,6 +23,7 @@ const DEFAULT_TIMEOUT: Duration = Duration::from_secs(5);
 
 const MAINNET: &str = "mainnet";
 const GNOSIS: &str = "gnosis";
+const AERIE: &str = "aerie";
 
 pub struct WatchSpec<T: EthSpec> {
     network: String,
@@ -46,6 +47,15 @@ impl WatchSpec<MainnetEthSpec> {
 
 impl WatchSpec<GnosisEthSpec> {
     fn gnosis(network: String) -> Self {
+        Self {
+            network,
+            spec: PhantomData,
+        }
+    }
+}
+
+impl WatchSpec<AerieEthSpec> {
+    fn aerie(network: String) -> Self {
         Self {
             network,
             spec: PhantomData,
@@ -81,6 +91,10 @@ pub async fn run_updater(config: FullConfig) -> Result<(), Error> {
         }
         GNOSIS => {
             let spec = WatchSpec::gnosis(config_name);
+            run_once(bn, spec, config).await
+        }
+        AERIE => {
+            let spec = WatchSpec::aerie(config_name);
             run_once(bn, spec, config).await
         }
         _ => unimplemented!("unsupported PRESET_BASE"),

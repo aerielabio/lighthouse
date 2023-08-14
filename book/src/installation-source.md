@@ -15,10 +15,10 @@ The rustup installer provides an easy way to update the Rust compiler, and works
 
 > Tips:
 >
-> - During installation, when prompted, enter `1` for the default installation.
-> - After Rust installation completes, try running `cargo version` . If it cannot
->   be found, run `source $HOME/.cargo/env`. After that, running `cargo version` should return the version, for example `cargo 1.68.2`.
-> - It's generally advisable to append `source $HOME/.cargo/env` to `~/.bashrc`.
+> -   During installation, when prompted, enter `1` for the default installation.
+> -   After Rust installation completes, try running `cargo version` . If it cannot
+>     be found, run `source $HOME/.cargo/env`. After that, running `cargo version` should return the version, for example `cargo 1.68.2`.
+> -   It's generally advisable to append `source $HOME/.cargo/env` to `~/.bashrc`.
 
 With Rust installed, follow the instructions below to install dependencies relevant to your
 operating system.
@@ -33,8 +33,8 @@ sudo apt install -y git gcc g++ make cmake pkg-config llvm-dev libclang-dev clan
 
 > Tips:
 >
-> - If there are difficulties, try updating the package manager with `sudo apt
->   update`.
+> -   If there are difficulties, try updating the package manager with `sudo apt
+update`.
 
 > Note: Lighthouse requires CMake v3.12 or newer, which isn't available in the package repositories
 > of Ubuntu 18.04 or earlier. On these distributions CMake can still be installed via PPA:
@@ -52,6 +52,7 @@ brew install cmake
 ```
 
 1. Install protoc using Homebrew:
+
 ```
 brew install protobuf
 ```
@@ -65,6 +66,7 @@ After this, you are ready to [build Lighthouse](#build-lighthouse).
 1. Install [Git](https://git-scm.com/download/win).
 1. Install the [Chocolatey](https://chocolatey.org/install) package manager for Windows.
     > Tips:
+    >
     > - Use PowerShell to install. In Windows, search for PowerShell and run as administrator.
     > - You must ensure `Get-ExecutionPolicy` is not Restricted. To test this, run `Get-ExecutionPolicy` in PowerShell. If it returns `restricted`, then run `Set-ExecutionPolicy AllSigned`, and then run
     ```bash
@@ -156,14 +158,15 @@ FEATURES=gnosis,slasher-lmdb make
 
 Commonly used features include:
 
-* `gnosis`: support for the Gnosis Beacon Chain.
-* `portable`: support for legacy hardware.
-* `modern`: support for exclusively modern hardware.
-* `slasher-lmdb`: support for the LMDB slasher backend. Enabled by default.
-* `slasher-mdbx`: support for the MDBX slasher backend.
-* `jemalloc`: use [`jemalloc`][jemalloc] to allocate memory. Enabled by default on Linux and macOS.
-  Not supported on Windows.
-* `spec-minimal`: support for the minimal preset (useful for testing).
+-   `gnosis`: support for the Gnosis Beacon Chain.
+-   `aerie`: support for the Aerie Beacon Chain.
+-   `portable`: support for legacy hardware.
+-   `modern`: support for exclusively modern hardware.
+-   `slasher-lmdb`: support for the LMDB slasher backend. Enabled by default.
+-   `slasher-mdbx`: support for the MDBX slasher backend.
+-   `jemalloc`: use [`jemalloc`][jemalloc] to allocate memory. Enabled by default on Linux and macOS.
+    Not supported on Windows.
+-   `spec-minimal`: support for the minimal preset (useful for testing).
 
 Default features (e.g. `slasher-lmdb`) may be opted out of using the `--no-default-features`
 argument for `cargo`, which can be plumbed in via the `CARGO_INSTALL_EXTRA_FLAGS` environment variable.
@@ -182,11 +185,11 @@ You can customise the compiler settings used to compile Lighthouse via
 
 Lighthouse includes several profiles which can be selected via the `PROFILE` environment variable.
 
-* `release`: default for source builds, enables most optimisations while not taking too long to
-  compile.
-* `maxperf`: default for binary releases, enables aggressive optimisations including full LTO.
-  Although compiling with this profile improves some benchmarks by around 20% compared to `release`,
-  it imposes a _significant_ cost at compile time and is only recommended if you have a fast CPU.
+-   `release`: default for source builds, enables most optimisations while not taking too long to
+    compile.
+-   `maxperf`: default for binary releases, enables aggressive optimisations including full LTO.
+    Although compiling with this profile improves some benchmarks by around 20% compared to `release`,
+    it imposes a _significant_ cost at compile time and is only recommended if you have a fast CPU.
 
 To compile with `maxperf`:
 
@@ -217,4 +220,3 @@ look into [cross compilation](./cross-compiling.md), or use a [pre-built
 binary](https://github.com/sigp/lighthouse/releases).
 
 If compilation fails with `error: linking with cc failed: exit code: 1`, try running `cargo clean`.
-

@@ -20,6 +20,8 @@ milagro = ["bls/milagro"]
 spec-minimal = []
 # Support Gnosis spec and Gnosis Beacon Chain.
 gnosis = []
+# Support Aerie spec and Aerie Beacon Chain.
+aerie = []
 # Support slasher MDBX backend.
 slasher-mdbx = ["slasher/mdbx"]
 # Support slasher LMDB backend.

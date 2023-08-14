@@ -60,6 +60,13 @@ impl Eth2Config {
             spec: ChainSpec::gnosis(),
         }
     }
+
+    pub fn aerie() -> Self {
+        Self {
+            eth_spec_id: EthSpecId::Aerie,
+            spec: ChainSpec::aerie(),
+        }
+    }
 }
 
 /// A directory that can be built by downloading files via HTTP.
@@ -274,6 +281,16 @@ define_hardcoded_nets!(
         // The name of the directory in the `eth2_network_config/built_in_network_configs`
         // directory where the configuration files are located for this network.
         "gnosis",
+        // Set to `true` if the genesis state can be found in the `built_in_network_configs`
+        // directory.
+        GENESIS_STATE_IS_KNOWN
+    ),
+    (
+        // Network name (must be unique among all networks).
+        aerie,
+        // The name of the directory in the `eth2_network_config/built_in_network_configs`
+        // directory where the configuration files are located for this network.
+        "aerie",
         // Set to `true` if the genesis state can be found in the `built_in_network_configs`
         // directory.
         GENESIS_STATE_IS_KNOWN

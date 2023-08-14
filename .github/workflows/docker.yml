@@ -27,18 +27,18 @@ jobs:
             - name: Extract version (if stable)
               if: github.event.ref == 'refs/heads/stable'
               run: |
-                    echo "VERSION=latest" >> $GITHUB_ENV
-                    echo "VERSION_SUFFIX=" >> $GITHUB_ENV
+                  echo "VERSION=latest" >> $GITHUB_ENV
+                  echo "VERSION_SUFFIX=" >> $GITHUB_ENV
             - name: Extract version (if unstable)
               if: github.event.ref == 'refs/heads/unstable'
               run: |
-                    echo "VERSION=latest" >> $GITHUB_ENV
-                    echo "VERSION_SUFFIX=-unstable" >> $GITHUB_ENV
+                  echo "VERSION=latest" >> $GITHUB_ENV
+                  echo "VERSION_SUFFIX=-unstable" >> $GITHUB_ENV
             - name: Extract version (if tagged release)
               if: startsWith(github.event.ref, 'refs/tags')
               run: |
-                    echo "VERSION=$(echo ${GITHUB_REF#refs/tags/})" >> $GITHUB_ENV
-                    echo "VERSION_SUFFIX=" >> $GITHUB_ENV
+                  echo "VERSION=$(echo ${GITHUB_REF#refs/tags/})" >> $GITHUB_ENV
+                  echo "VERSION_SUFFIX=" >> $GITHUB_ENV
         outputs:
             VERSION: ${{ env.VERSION }}
             VERSION_SUFFIX: ${{ env.VERSION_SUFFIX }}
@@ -47,14 +47,15 @@ jobs:
         runs-on: ubuntu-22.04
         strategy:
             matrix:
-                binary: [aarch64,
-                         aarch64-portable,
-                         x86_64,
-                         x86_64-portable]
-                features: [
-                    {version_suffix: "", env: "gnosis,slasher-lmdb,slasher-mdbx,jemalloc"},
-                    {version_suffix: "-dev", env: "jemalloc,spec-minimal"}
-                ]
+                binary: [aarch64, aarch64-portable, x86_64, x86_64-portable]
+                features:
+                    [
+                        {
+                            version_suffix: "",
+                            env: "gnosis,aerie,slasher-lmdb,slasher-mdbx,jemalloc",
+                        },
+                        { version_suffix: "-dev", env: "jemalloc,spec-minimal" },
+                    ]
                 include:
                     - profile: maxperf
 

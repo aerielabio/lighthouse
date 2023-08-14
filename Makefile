@@ -23,7 +23,7 @@ else
 endif
 
 # List of features to use when cross-compiling. Can be overridden via the environment.
-CROSS_FEATURES ?= gnosis,slasher-lmdb,slasher-mdbx,jemalloc
+CROSS_FEATURES ?= gnosis,aerie,slasher-lmdb,slasher-mdbx,jemalloc
 
 # Cargo profile for Cross builds. Default is for local builds, CI uses an override.
 CROSS_PROFILE ?= release
@@ -45,7 +45,7 @@ CARGO_INSTALL_EXTRA_FLAGS?=
 #
 # Binaries will most likely be found in `./target/release`
 install:
-	cargo install --path lighthouse --force --locked \
+	cargo install --path lighthouse --verbose --force --locked \
 		--features "$(FEATURES)" \
 		--profile "$(PROFILE)" \
 		$(CARGO_INSTALL_EXTRA_FLAGS)

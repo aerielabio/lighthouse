@@ -39,7 +39,7 @@ fn main() {
                 .value_name("STRING")
                 .takes_value(true)
                 .required(true)
-                .possible_values(&["minimal", "mainnet", "gnosis"])
+                .possible_values(&["minimal", "mainnet", "gnosis","aerie"])
                 .default_value("mainnet")
                 .global(true),
         )
@@ -851,6 +851,7 @@ fn main() {
             EthSpecId::Minimal => run(EnvironmentBuilder::minimal(), &matches),
             EthSpecId::Mainnet => run(EnvironmentBuilder::mainnet(), &matches),
             EthSpecId::Gnosis => run(EnvironmentBuilder::gnosis(), &matches),
+            EthSpecId::Aerie => run(EnvironmentBuilder::aerie(), &matches),
         });
 
     match result {

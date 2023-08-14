@@ -208,7 +208,7 @@ impl CapellaPreset {
 #[cfg(test)]
 mod test {
     use super::*;
-    use crate::{GnosisEthSpec, MainnetEthSpec, MinimalEthSpec};
+    use crate::{AerieEthSpec, GnosisEthSpec, MainnetEthSpec, MinimalEthSpec};
     use serde::de::DeserializeOwned;
     use std::env;
     use std::fs::File;
@@ -253,6 +253,11 @@ mod test {
     #[test]
     fn gnosis_presets_consistent() {
         preset_test::<GnosisEthSpec>();
+    }
+
+    #[test]
+    fn aerie_presets_consistent() {
+        preset_test::<AerieEthSpec>();
     }
 
     #[test]

@@ -163,7 +163,7 @@ pub struct ChainSpec {
      * Networking
      */
     pub boot_nodes: Vec<String>,
-    pub network_id: u8,
+    pub network_id: u64,
     pub attestation_propagation_slot_range: u64,
     pub maximum_gossip_clock_disparity_millis: u64,
     pub target_aggregators_per_committee: u64,
@@ -855,6 +855,168 @@ impl ChainSpec {
             domain_bls_to_execution_change: 10,
         }
     }
+
+    /// Returns a `ChainSpec` compatible with the Aerie Beacon Chain specification.
+    pub fn aerie() -> Self {
+        Self {
+            /*
+             * Config name
+             */
+            config_name: Some("aeriemainnet".to_string()),
+            /*
+             * Constants
+             */
+            genesis_slot: Slot::new(0),
+            far_future_epoch: Epoch::new(u64::MAX),
+            base_rewards_per_epoch: 4,
+            deposit_contract_tree_depth: 32,
+
+            /*
+             * Misc
+             */
+            max_committees_per_slot: 64,
+            target_committee_size: 128,
+            min_per_epoch_churn_limit: 4,
+            churn_limit_quotient: 65_536,
+            shuffle_round_count: 90,
+            min_genesis_active_validator_count: 4,
+            min_genesis_time: 0, // Dec 1, 2020
+            hysteresis_quotient: 4,
+            hysteresis_downward_multiplier: 1,
+            hysteresis_upward_multiplier: 5,
+
+            /*
+             *  Gwei values
+             */
+            min_deposit_amount: 10_000_000_000_000,
+            max_effective_balance: 1_000_000_000_000_000,
+            ejection_balance: 500_000_000_000_000,
+            effective_balance_increment: 1_000_000_000,
+
+            /*
+             * Initial Values
+             */
+            genesis_fork_version: [0x20, 0x00, 0x00, 0x00],
+            bls_withdrawal_prefix_byte: 0x00,
+            eth1_address_withdrawal_prefix_byte: 0x01,
+
+            /*
+             * Time parameters
+             */
+            genesis_delay: 100, // 7 days
+            seconds_per_slot: 8,
+            min_attestation_inclusion_delay: 1,
+            min_seed_lookahead: Epoch::new(1),
+            max_seed_lookahead: Epoch::new(4),
+            min_epochs_to_inactivity_penalty: 4,
+            min_validator_withdrawability_delay: Epoch::new(256),
+            shard_committee_period: 256,
+
+            /*
+             * Reward and penalty quotients
+             */
+            base_reward_factor: 64,
+            whistleblower_reward_quotient: 512,
+            proposer_reward_quotient: 8,
+            inactivity_penalty_quotient: u64::checked_pow(2, 26).expect("pow does not overflow"),
+            min_slashing_penalty_quotient: 128,
+            proportional_slashing_multiplier: 1,
+
+            /*
+             * Signature domains
+             */
+            domain_beacon_proposer: 0,
+            domain_beacon_attester: 1,
+            domain_randao: 2,
+            domain_deposit: 3,
+            domain_voluntary_exit: 4,
+            domain_selection_proof: 5,
+            domain_aggregate_and_proof: 6,
+
+            /*
+             * Fork choice
+             */
+            safe_slots_to_update_justified: 0,
+            proposer_score_boost: Some(40),
+
+            /*
+             * Eth1
+             */
+            eth1_follow_distance: 2880,
+            seconds_per_eth1_block: 10,
+            deposit_chain_id: 84886,
+            deposit_network_id: 84886,
+            deposit_contract_address: "0000009f683783a040d39a235cae7bab6142bc1a"
+                .parse()
+                .expect("chain spec deposit contract address"),
+
+            /*
+             * Altair hard fork params
+             */
+            inactivity_penalty_quotient_altair: option_wrapper(|| {
+                u64::checked_pow(2, 24)?.checked_mul(3)
+            })
+            .expect("calculation does not overflow"),
+            min_slashing_penalty_quotient_altair: u64::checked_pow(2, 6)
+                .expect("pow does not overflow"),
+            proportional_slashing_multiplier_altair: 2,
+            inactivity_score_bias: 4,
+            inactivity_score_recovery_rate: 16,
+            min_sync_committee_participants: 1,
+            epochs_per_sync_committee_period: Epoch::new(256),
+            domain_sync_committee: 7,
+            domain_sync_committee_selection_proof: 8,
+            domain_contribution_and_proof: 9,
+            altair_fork_version: [0x20, 0x00, 0x00, 0x90],
+            altair_fork_epoch: Some(Epoch::new(0)),
+
+            /*
+             * Merge hard fork params
+             */
+            inactivity_penalty_quotient_bellatrix: u64::checked_pow(2, 24)
+                .expect("pow does not overflow"),
+            min_slashing_penalty_quotient_bellatrix: u64::checked_pow(2, 5)
+                .expect("pow does not overflow"),
+            proportional_slashing_multiplier_bellatrix: 3,
+            bellatrix_fork_version: [0x20, 0x00, 0x00, 0x91],
+            bellatrix_fork_epoch: Some(Epoch::new(0)),
+            terminal_total_difficulty: Uint256::from_dec_str("0")
+                .expect("terminal_total_difficulty is a valid integer"),
+            terminal_block_hash: ExecutionBlockHash::zero(),
+            terminal_block_hash_activation_epoch: Epoch::new(18446744073709551615),
+            safe_slots_to_import_optimistically: 0,
+
+            /*
+             * Capella hard fork params
+             */
+            capella_fork_version: [0x20, 00, 00, 0x92],
+            capella_fork_epoch: Some(Epoch::new(1)),
+            max_validators_per_withdrawals_sweep: 16384,
+
+            /*
+             * Network specific
+             */
+            boot_nodes: vec![],
+            network_id: 84886, // mainnet network id
+            attestation_propagation_slot_range: 32,
+            attestation_subnet_count: 64,
+            subnets_per_node: 2,
+            maximum_gossip_clock_disparity_millis: 500,
+            target_aggregators_per_committee: 16,
+            epochs_per_subnet_subscription: 256,
+            attestation_subnet_extra_bits: 0,
+
+            /*
+             * Application specific
+             */
+            domain_application_mask: APPLICATION_DOMAIN_BUILDER,
+
+            /*
+             * Capella params
+             */
+            domain_bls_to_execution_change: 10,
+        }
+    }
 }
 
 impl Default for ChainSpec {
@@ -1038,6 +1200,7 @@ impl Config {
             "minimal" => Some(EthSpecId::Minimal),
             "mainnet" => Some(EthSpecId::Mainnet),
             "gnosis" => Some(EthSpecId::Gnosis),
+            "aerie" => Some(EthSpecId::Aerie),
             _ => None,
         }
     }
