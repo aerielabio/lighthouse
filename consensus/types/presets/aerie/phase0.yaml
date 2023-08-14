@@ -20,7 +20,7 @@ HYSTERESIS_UPWARD_MULTIPLIER: 5
 # Fork Choice
 # ---------------------------------------------------------------
 # 2**3 (= 8)
-SAFE_SLOTS_TO_UPDATE_JUSTIFIED: 8
+SAFE_SLOTS_TO_UPDATE_JUSTIFIED: 0
 
 # Gwei values
 # ---------------------------------------------------------------
