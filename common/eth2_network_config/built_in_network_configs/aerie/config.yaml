@@ -1,6 +1,6 @@
 # Extends the mainnet preset
-CONFIG_NAME: 'aerie'
-PRESET_BASE: 'aerie'
+CONFIG_NAME: "aerie"
+PRESET_BASE: "aerie"
 
 # Transition
 # ---------------------------------------------------------------
@@ -20,7 +20,6 @@ MIN_GENESIS_TIME: 0
 GENESIS_FORK_VERSION: 0x20000000
 # 604800 seconds (7 days)
 GENESIS_DELAY: 100
-
 
 # Forking
 # ---------------------------------------------------------------
@@ -44,11 +43,10 @@ SHARDING_FORK_EPOCH: 18446744073709551615
 # TBD, 2**32 is a placeholder. Merge transition approach is in active R&D.
 TRANSITION_TOTAL_DIFFICULTY: 4294967296
 
-
 # Time parameters
 # ---------------------------------------------------------------
 # 12 seconds
-SECONDS_PER_SLOT:  8 #default 12
+SECONDS_PER_SLOT: 8 #default 12
 # 14 (estimate from Eth1 mainnet)
 SECONDS_PER_ETH1_BLOCK: 10
 # 2**8 (= 256) epochs ~27 hours
@@ -57,7 +55,6 @@ MIN_VALIDATOR_WITHDRAWABILITY_DELAY: 256
 SHARD_COMMITTEE_PERIOD: 256
 # 2**11 (= 2,048) Eth1 blocks ~8 hours
 ETH1_FOLLOW_DISTANCE: 2880
-
 
 # Validator cycle
 # ---------------------------------------------------------------
@@ -71,7 +68,6 @@ EJECTION_BALANCE: 500000000000000
 MIN_PER_EPOCH_CHURN_LIMIT: 4
 # 2**16 (= 65,536)
 CHURN_LIMIT_QUOTIENT: 65536
-
 
 # Fork choice
 # ---------------------------------------------------------------

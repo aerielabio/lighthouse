@@ -20,7 +20,7 @@ HYSTERESIS_UPWARD_MULTIPLIER: 5
 # Fork Choice
 # ---------------------------------------------------------------
 # 2**3 (= 8)
-SAFE_SLOTS_TO_UPDATE_JUSTIFIED: 0
+SAFE_SLOTS_TO_UPDATE_JUSTIFIED: 8
 
 # Gwei values
 # ---------------------------------------------------------------
@@ -35,7 +35,7 @@ EFFECTIVE_BALANCE_INCREMENT: 1000000000
 # 2**0 (= 1) slots 12 seconds
 MIN_ATTESTATION_INCLUSION_DELAY: 1
 # 2**5 (= 32) slots 6.4 minutes
-SLOTS_PER_EPOCH: 4
+SLOTS_PER_EPOCH: 32
 # 2**0 (= 1) epochs 6.4 minutes
 MIN_SEED_LOOKAHEAD: 1
 # 2**2 (= 4) epochs 25.6 minutes
