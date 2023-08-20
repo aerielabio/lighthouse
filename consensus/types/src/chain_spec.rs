@@ -868,7 +868,7 @@ impl ChainSpec {
              */
             genesis_slot: Slot::new(0),
             far_future_epoch: Epoch::new(u64::MAX),
-            base_rewards_per_epoch: 8,
+            base_rewards_per_epoch: 4,
             deposit_contract_tree_depth: 32,
 
             /*
@@ -915,7 +915,7 @@ impl ChainSpec {
             /*
              * Reward and penalty quotients
              */
-            base_reward_factor: 128,
+            base_reward_factor: 1024,
             whistleblower_reward_quotient: 512,
             proposer_reward_quotient: 8,
             inactivity_penalty_quotient: u64::checked_pow(2, 26).expect("pow does not overflow"),
@@ -942,8 +942,8 @@ impl ChainSpec {
             /*
              * Eth1
              */
-            eth1_follow_distance: 1000,
-            seconds_per_eth1_block: 10,
+            eth1_follow_distance: 2880,
+            seconds_per_eth1_block: 8,
             deposit_chain_id: 84886,
             deposit_network_id: 84886,
             deposit_contract_address: "0000009f683783a040d39a235cae7bab6142bc1a"

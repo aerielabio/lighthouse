@@ -47,8 +47,7 @@ TRANSITION_TOTAL_DIFFICULTY: 4294967296
 # ---------------------------------------------------------------
 # 12 seconds
 SECONDS_PER_SLOT: 8 #default 12
-# 14 (estimate from Eth1 mainnet)
-SECONDS_PER_ETH1_BLOCK: 10
+
 # 2**8 (= 256) epochs ~27 hours
 MIN_VALIDATOR_WITHDRAWABILITY_DELAY: 256
 # 2**8 (= 256) epochs ~27 hours
@@ -84,4 +83,6 @@ DEPOSIT_NETWORK_ID: 84886
 SUBNETS_PER_NODE: 2
 
 # AERIE SPECIFIC
-ETH1_FOLLOW_DISTANCE: 1000 # 1K Block of ETH1
+ETH1_FOLLOW_DISTANCE: 2880 # 2880 Slots
+# 14 (estimate from Eth1 mainnet)
+SECONDS_PER_ETH1_BLOCK: 8

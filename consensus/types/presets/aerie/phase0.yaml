@@ -61,7 +61,7 @@ VALIDATOR_REGISTRY_LIMIT: 1099511627776
 # Reward and penalty quotients
 # ---------------------------------------------------------------
 # 2**6 (= 64)
-BASE_REWARD_FACTOR: 128 # WAS 64
+BASE_REWARD_FACTOR: 1024 # WAS 64
 # 2**9 (= 512)
 WHISTLEBLOWER_REWARD_QUOTIENT: 512
 # 2**3 (= 8)
